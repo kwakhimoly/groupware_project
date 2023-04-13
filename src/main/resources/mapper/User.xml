@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+    [템플릿 설명]  
+    - 해당 파일은 SQL 문을 작성하는 곳입니다.
+-->
+<mapper namespace="User">
+
+    <select id="User_getList" parameterType="UserDto" resultType="UserDto">
+        SELECT user_id,
+        	   user_nm,
+        	   user_dept_se_no,
+        	   user_telno,
+        	   user_eml_addr,
+        	   user_addr,
+        	   user_aprv_yn
+        FROM public."user"
+    </select>
+
+
+</mapper>
