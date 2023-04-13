@@ -1,4 +1,4 @@
-package com.ds.gw.user.dto;
+package com.ds.gw.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

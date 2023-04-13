@@ -8,17 +8,13 @@
           별명을 만들어서 접근하기 위해 기술한다  -->
 	<typeAliases> 
 		<typeAlias alias="UserDto" 
-		    type="com.ds.gw.user.dto.UserDto"/> 
-
-		    	
+		    type="com.ds.gw.domain.UserDto"/> 	
 	</typeAliases>
 
 	<mappers>
 	   <!--  sql 쿼리를 두는 곳  Guestbook.xml 파일을 만들어야 한다  -->
 	  <!--  src/main/resources 폴더에 두자 -->
 	  <mapper resource=	"mapper/User.xml" />
-
-	  
 	</mappers>
 	
 </configuration>
