@@ -29,7 +29,7 @@
   </div>
 
 </nav>
-<form name="myform" id="myform" th:object=${formDto} method="post" th:action="@{/user/save}">
+<form name="myform" id="myform" method="post" th:action="@{/user/save}">
 <input type="hidden" name="idCheck" id="idCheck" value="N">
 <div class="container mt-3">
   <h3>회원가입</h3>
@@ -43,42 +43,41 @@
     <tbody>
       <tr><th>아이디</th><td>
         	 <div class="input-group">
-			    <input type="text" class="form-control" placeholder="아이디를 입력하세요" th:value="${formDto.user_id}" name="user_id" id="user_id">
+			    <input type="text" class="form-control" placeholder="아이디를 입력하세요" name="user_id" id="user_id">
 			 </div>
       </td></tr>
       <tr><th>사원명</th><td>
         	 <div class="input-group">
-			    <input type="text" class="form-control" placeholder="이름을 입력하세요" th:value="${formDto.user_nm}" name="user_nm" id="user_nm">
+			    <input type="text" class="form-control" placeholder="이름을 입력하세요" name="user_nm" id="user_nm">
 			 </div>
       </td></tr>
       <tr><th>이메일</th><td>
         	 <div class="input-group">
-			    <input type="email" class="form-control" placeholder="이메일을 입력하세요" th:field="*{user_eml_addr}" th:value="${formDto.user_eml_addr}" name="user_eml_addr" id="user_eml_addr">
+			    <input type="email" class="form-control" placeholder="이메일을 입력하세요" name="user_eml_addr" id="user_eml_addr">
 			 </div>
       </td></tr>
       <tr><th>부서</th><td>
         	 <div class="input-group">
-			    <select th:field="*{user_dept_se_no}" class="custom-select">
+			    <select class="custom-select" name="user_dept_se_no">
 			    	<option value="0">선택</option>
-			    	<option th:each="dept:${deptList}" th:value="${dept.dept_se_no}"
-			    		th:utext="${dept.dept_nm}"></option>
+			    	<option th:each="dept:${deptList}" th:value="${dept.dept_se_no}" th:utext="${dept.dept_nm}"></option>
 			    </select>
 			 </div>
       </td></tr>
       <tr><th>전화번호</th><td>
         	 <div class="input-group">
-			    <input type="tel" class="form-control" placeholder="전화번호를 입력하세요" th:field="*{user_telno}" th:value="${formDto.user_telno}" name="user_telno" id="user_telno">
+			    <input type="tel" class="form-control" placeholder="전화번호를 입력하세요" name="user_telno" id="user_telno">
 			 </div>
       </td></tr>
       <tr><th>주소</th><td>
         	 <div class="input-group">
-			    <input type="text" class="form-control" placeholder="주소를 입력하세요" th:value="${formDto.user_addr}" name="user_addr" id="user_addr">
+			    <input type="text" class="form-control" placeholder="주소를 입력하세요" name="user_addr" id="user_addr">
 			 </div>
       </td></tr>
       <tr><th>취미</th><td>
         	 <div class="input-group">
   					<div th:each="hobby : ${hobList}" class="form-check form-check-inline">
-   					 <input type="checkbox" th:field="*{lnkg_hobby_id}" name="hobby_id" id="hobby_id" th:value="${hobby.hobby_id}" class="form-check-input">
+   					 <input type="checkbox" name="lnkg_hobby_id" id="lnkg_hobby_id" th:value="${hobby.hobby_id}" class="form-check-input">
    					 <label th:text="${hobby.hobby_nm}" id="hobby_nm" class="form-check-label"></label>&ensp;
   					</div>
 			 </div>

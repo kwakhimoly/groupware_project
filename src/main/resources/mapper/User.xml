@@ -17,15 +17,12 @@
         	   user_aprv_yn
         FROM public."user"
     </select>
+    
     <select id="User_getTotalCnt" parameterType="UserDto" resultType="Integer">
         SELECT count(*)
         FROM public."user"
     </select>
-<!--     <select id="User_idCheck" parameterType="UserDto" resultType="Integer">
-        SELECT count(user_id) 
-        FROM public."user" 
-        WHERE user_id=#{user_id}
-    </select> -->
+
 	<insert id="User_insert" parameterType="UserDto">
 		INSERT INTO public."user"(
 				user_id, 
