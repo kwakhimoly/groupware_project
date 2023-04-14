@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class HobbyDataDto {
+public class LnkgDto {
 private String lnkg_user_id;
 private String lnkg_hobby_id;
 }

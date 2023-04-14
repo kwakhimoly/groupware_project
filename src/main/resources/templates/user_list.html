@@ -10,14 +10,22 @@
 <tr>
 	<th>사용자 아이디</th>
 	<th>사용자 이름</th>
+	<th>사용자 부서번호</th>
+	<th>사용자 이메일</th>
 	<th>사용자 전화번호</th>
+	<th>사용자 주소</th>
+	<th>사용자 승인여부</th>
 </tr>
 </thead>
 <tbody>
 <tr th:each="resultList:${result}">
 	<td><span th:text="${resultList.user_id}"></span></td>
 	<td><span th:text="${resultList.user_nm}"></span></td>
+	<td><span th:text="${resultList.user_dept_se_no}"></span></td>
+	<td><span th:text="${resultList.user_eml_addr}"></span></td>
 	<td><span th:text="${resultList.user_telno}"></span></td>
+	<td><span th:text="${resultList.user_addr}"></span></td>
+	<td><span th:text="${resultList.user_aprv_yn}"></span></td>
 </tr>
 </tbody>
 </table>

@@ -37,9 +37,9 @@
 		VALUES (
 				#{user_id}, 
 				#{user_nm}, 
-				#{user_dept}, 
-				#{user_eml}, 
-				#{user_tel}, 
+				#{user_dept_se_no}, 
+				#{user_eml_addr}, 
+				#{user_telno}, 
 				#{user_addr})
 	</insert>
 	
