@@ -37,13 +37,6 @@ public class UserController {
 		return "index";
 	}
 	
-	@GetMapping("/admin")
-	public String getList(UserDto dto, Model model){
-		List<UserDto> resultList = user_service.getList(dto);
-		model.addAttribute("result", resultList);
-		return "admin";
-	}
-	
 	@GetMapping("/user/write")
 	public String getWrite(DeptDto dept_dto, HobbyDto hob_dto, Model model) {		
 		List<DeptDto> deptList = dept_service.getList(dept_dto);

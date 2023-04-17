@@ -26,9 +26,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto getView(UserDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto getView(String user_id) {
+		return dao.getView(user_id);
 	}
 
 	@Override

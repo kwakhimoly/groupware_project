@@ -16,7 +16,7 @@ table {
 </style>
 </head>
 <body>
-<form name="myform" id="myform" method="post">
+<form name="myform" id="myform" method="post" th:object="${view}">
 	<div class="container mt-3">
 		<h2>관리자 페이지</h2>
 		<p></p>
@@ -31,7 +31,7 @@ table {
 					<td>
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="이름을 입력하세요"
-								name="searchkeyword" id="searchkeyword">
+								name="searchykeyword" id="searchykeyword">
 						</div>
 					</td>
 					<td style="text-align: left;"><button type="button" class="btn btn-warning" onclick="goSearch()">검색</button></td>
@@ -78,7 +78,7 @@ table {
 						<th>아이디</th>
 						<td>
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="아이디를 입력하세요"
+								<input type="text" class="form-control" th:value="${view.user_id}"
 									name="user_id" id="user_id">
 							</div>
 						</td>
@@ -87,7 +87,7 @@ table {
 						<th>사원명</th>
 						<td>
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="아이디를 입력하세요"
+								<input type="text" class="form-control" th:value="${view.user_nm}"
 									name="user_nm" id="user_nm">
 							</div>
 						</td>
@@ -96,7 +96,7 @@ table {
 						<th>이메일</th>
 						<td>
 							<div class="input-group">
-								<input type="email" class="form-control" placeholder="아이디를 입력하세요"
+								<input type="email" class="form-control" th:value="${view.user_eml_addr}"
 									name="user_eml_addr" id="user_eml_addr">
 							</div>
 						</td>
@@ -106,9 +106,8 @@ table {
 						<td>
 							<div class="input-group">
 								<select class="custom-select" name="user_dept_se_no">
-									<option value="0">선택</option>
 									<option th:each="dept:${deptList}"
-										th:value="${dept.dept_se_no}" th:utext="${dept.dept_nm}"></option>
+										th:value="${dept.dept_se_no}" th:selected="${dept.dept_se_no}==${view.user_dept_se_no}" th:utext="${dept.dept_nm}"></option>
 								</select>
 							</div>
 						</td>
@@ -117,7 +116,7 @@ table {
 						<th>전화번호</th>
 						<td>
 							<div class="input-group">
-								<input type="tel" class="form-control" placeholder="아이디를 입력하세요"
+								<input type="tel" class="form-control" th:value="${view.user_telno}"
 									name="user_telno" id="user_telno">
 							</div>
 						</td>
@@ -126,7 +125,7 @@ table {
 						<th>주소</th>
 						<td>
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="아이디를 입력하세요"
+								<input type="text" class="form-control" th:value="${view.user_addr}"
 									name="user_addr" id="user_addr">
 							</div>
 						</td>
@@ -138,7 +137,7 @@ table {
 								<div th:each="hobby : ${hobList}"
 									class="form-check form-check-inline">
 									<input type="checkbox" name="lnkg_hobby_id" id="lnkg_hobby_id"
-										th:value="${hobby.hobby_id}" class="form-check-input">
+										th:value="${hobby.hobby_id}" th:checked="${#strings.contains(viewHob, hobby.hobby_id)}" class="form-check-input">
 									<label th:text="${hobby.hobby_nm}" id="hobby_nm"
 										class="form-check-label"></label>&ensp;
 								</div>
@@ -148,11 +147,23 @@ table {
 				</tbody>
 			</table>
 			<div style="text-align: right;">
-			<button type="submit" class="btn btn-warning" onclick="goSave()">저장</button>
-			<button type="submit" class="btn btn-warning" onclick="goDelete()">삭제</button>
+			<button type="button" class="btn btn-warning" onclick="goSave()">저장</button>
+			<button type="button" class="btn btn-warning" onclick="goDelete()">삭제</button>
 			</div>
 		</div>
 	</div>
 </form>
 </body>
+<script type="text/javascript" th:inline="javascript">
+function goSearch(){
+	alert("검색");
+}
+function goSave(){
+	alert("저장");
+}
+function goDelete(){
+	alert("삭제");	
+}
+
+</script>
 </html>

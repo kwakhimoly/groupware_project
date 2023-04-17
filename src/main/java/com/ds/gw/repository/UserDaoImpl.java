@@ -26,9 +26,8 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public UserDto getView(UserDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto getView(String user_id) {
+		return sm.selectOne("User_getView", user_id);
 	}
 
 	@Override

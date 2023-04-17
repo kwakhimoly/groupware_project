@@ -8,9 +8,10 @@
 <mapper namespace="Lnkg">
 
     <select id="Lnkg_getList" parameterType="LnkgDto" resultType="LnkgDto">
-        SELECT hobby_id, 
-        	   user_id
+        SELECT lnkg_hobby_id, 
+        	   lnkg_user_id as user_id
 		FROM public.lnkg_hobby
+		WHERE lnkg_user_id=#{user_id}
     </select>
 	<insert id="Lnkg_insert" parameterType="LnkgDto">
 		INSERT INTO public.lnkg_hobby(

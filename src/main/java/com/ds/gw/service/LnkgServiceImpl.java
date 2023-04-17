@@ -15,8 +15,8 @@ public class LnkgServiceImpl implements LnkgService {
 	LnkgDao dao;
 
 	@Override
-	public List<LnkgDto> getList(LnkgDto dto) {
-		return dao.getList(dto);
+	public List<LnkgDto> getList(String user_id) {
+		return dao.getList(user_id);
 	}
 
 	@Override

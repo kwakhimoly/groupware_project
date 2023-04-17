@@ -15,8 +15,8 @@ public class LnkgDaoImpl implements LnkgDao{
 	SqlSessionTemplate sm;
 	
 	@Override
-	public List<LnkgDto> getList(LnkgDto dto) {
-		return sm.selectList("Lnkg_getList", dto);
+	public List<LnkgDto> getList(String user_id) {
+		return sm.selectList("Lnkg_getList", user_id);
 	}
 
 	@Override

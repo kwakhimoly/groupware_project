@@ -5,6 +5,6 @@ import java.util.List;
 import com.ds.gw.domain.LnkgDto;
 
 public interface LnkgDao {
-	List<LnkgDto> getList(LnkgDto dto);
+	List<LnkgDto> getList(String user_id);
 	void insert(LnkgDto dto);
 }
