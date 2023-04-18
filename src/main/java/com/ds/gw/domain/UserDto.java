@@ -1,18 +1,18 @@
 package com.ds.gw.domain;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-public class UserDto {
+public class UserDto extends BaseDto {
 	String user_id;
 	String user_nm;
 	int user_dept_se_no;
-	String user_dept;
 	String user_eml_addr;
 	String user_telno;
 	String user_addr;
 	String user_aprv_yn;
-	String user_hobby;
 }

@@ -24,4 +24,14 @@ public class LnkgDaoImpl implements LnkgDao{
 		sm.insert("Lnkg_insert", dto);
 	}
 
+	@Override
+	public void update(LnkgDto dto) {
+		sm.update("Lnkg_update", dto);
+	}
+
+	@Override
+	public void reset(LnkgDto dto) {
+		sm.delete("Lnkg_reset", dto);
+	}
+
 }

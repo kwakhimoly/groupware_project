@@ -16,7 +16,7 @@ table {
 </style>
 </head>
 <body>
-<form name="myform" id="myform" method="post">
+<form name="schform" id="schform" method="post" action="/admin" >
 	<div class="container mt-3">
 		<h2>관리자 페이지</h2>
 		<p></p>
@@ -31,14 +31,16 @@ table {
 					<td>
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="이름을 입력하세요"
-								name="searchkeyword" id="searchkeyword">
+								name="schKey" id="schKey">
 						</div>
 					</td>
-					<td style="text-align: left;"><button type="button" class="btn btn-warning" onclick="goSearch()">검색</button></td>
+					<td style="text-align: left;">
+					<button type="submit" class="btn btn-warning">검색</button></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+</form>
 	<br>
 	<div class="d-flex mb-3">
 		<div class="p-2 flex-fill">
@@ -147,12 +149,13 @@ table {
 					</tr>
 				</tbody>
 			</table>
-			<div style="text-align: right;">
+<!-- 			<div style="text-align: right;">
 			<button type="submit" class="btn btn-warning" onclick="goSave()">저장</button>
 			<button type="submit" class="btn btn-warning" onclick="goDelete()">삭제</button>
-			</div>
+			</div> -->
 		</div>
 	</div>
-</form>
+<!-- </form> -->
 </body>
+
 </html>

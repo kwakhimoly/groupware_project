@@ -6,9 +6,9 @@ import com.ds.gw.domain.UserDto;
 
 public interface UserDao {
 	List<UserDto> getList(UserDto userdto);
-	int getTotalCnt(UserDto dto);
+	List<UserDto> findByNm(UserDto userdto);
 	UserDto getView(String user_id);
 	void insert(UserDto dto);
 	void update(UserDto dto);
-	void delete(UserDto dto);
+	void delete(String user_id);
 }

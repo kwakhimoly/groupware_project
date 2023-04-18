@@ -21,11 +21,6 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public int getTotalCnt(UserDto dto) {
-		return sm.selectOne("User_getTotalCnt", dto);
-	}
-
-	@Override
 	public UserDto getView(String user_id) {
 		return sm.selectOne("User_getView", user_id);
 	}
@@ -38,22 +33,16 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void update(UserDto dto) {
-		// TODO Auto-generated method stub
-		
+		sm.update("User_update", dto);
 	}
 
 	@Override
-	public void delete(UserDto dto) {
-		// TODO Auto-generated method stub
-		
+	public void delete(String user_id) {
+		sm.delete("User_delete", user_id);
 	}
-	/*
-	 * @Override public boolean isDuplicate(UserDto dto) { int result =
-	 * sm.selectOne("User_idCheck", dto);
-	 * 
-	 * if(result==0) { return true; }
-	 * 
-	 * return false; }
-	 */
 
+	@Override
+	public List<UserDto> findByNm(UserDto userdto) {
+		return sm.selectList("User_findByNm", userdto);
+	}
 }

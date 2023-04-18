@@ -24,4 +24,14 @@ public class LnkgServiceImpl implements LnkgService {
 		dao.insert(dto);
 	}
 
+	@Override
+	public void update(LnkgDto dto) {
+		dao.update(dto);
+	}
+
+	@Override
+	public void reset(LnkgDto dto) {
+		dao.reset(dto);
+	}
+
 }

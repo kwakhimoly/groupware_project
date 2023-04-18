@@ -9,6 +9,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <style type="text/css">
 table {
 	text-align: center;
@@ -16,154 +18,161 @@ table {
 </style>
 </head>
 <body>
-<form name="myform" id="myform" method="post" th:object="${view}">
-	<div class="container mt-3">
-		<h2>관리자 페이지</h2>
-		<p></p>
-		<table class="table table-borderless">
-			<colgroup>
-				<col width="25%">
-				<col width="*">
-			</colgroup>
-			<tbody>
+<form name="schform" id="schform" action="/admin">
+		<div class="container mt-3">
+			<h2>관리자 페이지</h2>
+			<p></p>
+			<table class="table table-borderless">
+				<colgroup>
+					<col width="25%">
+					<col width="*">
+				</colgroup>
+				<tbody>
 				<tr>
 					<th>이름</th>
 					<td>
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="이름을 입력하세요"
-								name="searchykeyword" id="searchykeyword">
+								name="schKey" id="schKey">
 						</div>
 					</td>
-					<td style="text-align: left;"><button type="button" class="btn btn-warning" onclick="goSearch()">검색</button></td>
+					<td style="text-align: left;">
+					<button type="submit" class="btn btn-warning">검색</button></td>
 				</tr>
 			</tbody>
-		</table>
-	</div>
-	<br>
-	<div class="d-flex mb-3">
-		<div class="p-2 flex-fill">
-			<table class="table table-bordered">
-			<colgroup>
-			<col width="29%">
-			<col width="29%">
-			<col width="29%">
-			<col width="*">
-			</colgroup>
-				<thead>
-					<tr>
-						<th>아이디</th>
-						<th>사원명</th>
-						<th>부서</th>
-						<th>승인여부</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="resultList:${result}">
-						<td><a href="admin_view.html" th:href="@{/admin/view/{user_id}(user_id=${resultList.user_id})}" th:text="${resultList.user_id}"></a></td>
-						<td><span th:text="${resultList.user_nm}"></span></td>
-						<td><span th:text="${resultList.user_dept}"></span></td>
-						<td><span th:text="${resultList.user_aprv_yn}"></span></td>
-					</tr>
-				</tbody>
 			</table>
 		</div>
-		<div class="p-2 flex-fill">
-			<table class="table table-bordered">
-				<colgroup>
-					<col width="30%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th>아이디</th>
-						<td>
-							<div class="input-group">
-								<input type="text" class="form-control" th:value="${view.user_id}"
-									name="user_id" id="user_id">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>사원명</th>
-						<td>
-							<div class="input-group">
-								<input type="text" class="form-control" th:value="${view.user_nm}"
-									name="user_nm" id="user_nm">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>
-							<div class="input-group">
-								<input type="email" class="form-control" th:value="${view.user_eml_addr}"
-									name="user_eml_addr" id="user_eml_addr">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>부서</th>
-						<td>
-							<div class="input-group">
-								<select class="custom-select" name="user_dept_se_no">
-									<option th:each="dept:${deptList}"
-										th:value="${dept.dept_se_no}" th:selected="${dept.dept_se_no}==${view.user_dept_se_no}" th:utext="${dept.dept_nm}"></option>
-								</select>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<td>
-							<div class="input-group">
-								<input type="tel" class="form-control" th:value="${view.user_telno}"
-									name="user_telno" id="user_telno">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td>
-							<div class="input-group">
-								<input type="text" class="form-control" th:value="${view.user_addr}"
-									name="user_addr" id="user_addr">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>취미</th>
-						<td>
-							<div class="input-group">
-								<div th:each="hobby : ${hobList}"
-									class="form-check form-check-inline">
-									<input type="checkbox" name="lnkg_hobby_id" id="lnkg_hobby_id"
-										th:value="${hobby.hobby_id}" th:checked="${#strings.contains(viewHob, hobby.hobby_id)}" class="form-check-input">
-									<label th:text="${hobby.hobby_nm}" id="hobby_nm"
-										class="form-check-label"></label>&ensp;
+		<br>
+	</form>
+	<form name="myform" id="myform" method="post" th:action="@{/admin/update/{user_id}(user_id=${view.user_id})}" th:object="${view}">
+		<div class="d-flex mb-3">
+			<div class="p-2 flex-fill">
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="29%">
+						<col width="29%">
+						<col width="29%">
+						<col width="*">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>아이디</th>
+							<th>사원명</th>
+							<th>부서</th>
+							<th>승인여부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="resultList:${result}">
+							<td><a href="admin_view.html"
+								th:href="@{/admin/view/{user_id}(user_id=${resultList.user_id})}"
+								th:text="${resultList.user_id}"></a></td>
+							<td><span th:text="${resultList.user_nm}"></span></td>
+							<td><span th:text="${resultList.user_dept}"></span></td>
+							<td><span th:text="${resultList.user_aprv_yn}"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="p-2 flex-fill">
+				<table class="table table-bordered">
+					<colgroup>
+						<col width="30%">
+						<col width="*">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td>
+								<div class="input-group">
+									<span th:text="${view.user_id}"></span>
 								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div style="text-align: right;">
-			<button type="button" class="btn btn-warning" onclick="goSave()">저장</button>
-			<button type="button" class="btn btn-warning" onclick="goDelete()">삭제</button>
+							</td>
+						</tr>
+						<tr>
+							<th>사원명</th>
+							<td>
+								<div class="input-group">
+									<input type="text" class="form-control"
+										th:value="${view.user_nm}" name="user_nm" id="user_nm">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>
+								<div class="input-group">
+									<input type="email" class="form-control"
+										th:value="${view.user_eml_addr}" name="user_eml_addr"
+										id="user_eml_addr">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>부서</th>
+							<td>
+								<div class="input-group">
+									<select class="custom-select" name="user_dept_se_no">
+										<option th:each="dept:${deptList}"
+											th:value="${dept.dept_se_no}"
+											th:selected="${dept.dept_se_no}==${view.user_dept_se_no}"
+											th:utext="${dept.dept_nm}"></option>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>
+								<div class="input-group">
+									<input type="tel" class="form-control"
+										th:value="${view.user_telno}" name="user_telno"
+										id="user_telno">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td>
+								<div class="input-group">
+									<input type="text" class="form-control"
+										th:value="${view.user_addr}" name="user_addr" id="user_addr">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>취미</th>
+							<td>
+								<div class="input-group">
+									<div th:each="hobby : ${hobList}"
+										class="form-check form-check-inline">
+										<input type="checkbox" name="lnkg_hobby_id" id="lnkg_hobby_id"
+											th:value="${hobby.hobby_id}"
+											th:checked="${#strings.contains(viewHob, hobby.hobby_id)}"
+											class="form-check-input"> <label
+											th:text="${hobby.hobby_nm}" id="hobby_nm"
+											class="form-check-label"></label>&ensp;
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>승인여부</th>
+							<td>
+								<div class="input-group">
+									<span th:if="${view.user_aprv_yn=='N'}" th:text="승인요청"></span>
+									<span th:unless="${view.user_aprv_yn=='N'}" th:text="승인"></span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div style="text-align: right;">
+					<button type="submit" class="btn btn-warning">저장</button>
+					<button type="button" class="btn btn-warning" th:onclick="|location.href='@{/admin/delete/{user_id}(user_id=${view.user_id})}'|">삭제</button>
+				</div>
 			</div>
 		</div>
-	</div>
-</form>
+	</form>
 </body>
-<script type="text/javascript" th:inline="javascript">
-function goSearch(){
-	alert("검색");
-}
-function goSave(){
-	alert("저장");
-}
-function goDelete(){
-	alert("삭제");	
-}
-
-</script>
 </html>

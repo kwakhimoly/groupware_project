@@ -17,6 +17,10 @@ spring:
     prefix: classpath:/templates/
     cache: false
     check-template-location: false
+ mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 server:
  port: 8080
  servlet:

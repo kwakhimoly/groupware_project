@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ds.gw.domain.UserDto;
 import com.ds.gw.repository.UserDao;
@@ -21,34 +22,30 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getTotalCnt(UserDto dto) {
-		return dao.getTotalCnt(dto);
-	}
-
-	@Override
 	public UserDto getView(String user_id) {
 		return dao.getView(user_id);
 	}
 
 	@Override
+	@Transactional
 	public void insert(UserDto dto) {
 		dao.insert(dto);
 	}
 
 	@Override
+	@Transactional
 	public void update(UserDto dto) {
-		// TODO Auto-generated method stub
-		
+		dao.update(dto);
 	}
 
 	@Override
-	public void delete(UserDto dto) {
-		// TODO Auto-generated method stub
-		
+	public void delete(String user_id) {
+		dao.delete(user_id);
 	}
 
-	/*
-	 * @Override public boolean isDuplicate(UserDto dto) { return
-	 * dao.isDuplicate(dto); }
-	 */
+	@Override
+	public List<UserDto> findByNm(UserDto userdto) {
+		return dao.findByNm(userdto);
+	}
+
 }
