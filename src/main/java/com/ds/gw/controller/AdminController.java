@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,21 +36,23 @@ public class AdminController {
 	
 	@RequestMapping("/admin")
 	public String getList(DeptDto dept_dto, HobbyDto hob_dto, UserDto dto, Model model) {
-		
 		List<UserDto> resultList = user_service.getList(dto);
 		model.addAttribute("result", resultList);
-
 		List<DeptDto> deptList = dept_service.getList(dept_dto);
 		model.addAttribute("deptList", deptList);
-
+		
 		List<HobbyDto> hobList = hob_service.getList(hob_dto);
 		model.addAttribute("hobList", hobList);
-
+		
+		model.addAttribute("schKey", dto.getSchKey());
+		
 		return "admin";
 	}
 
-	@GetMapping("/admin/view/{user_id}")
+	@RequestMapping("/admin/{user_id}")
 	public String getView(@PathVariable String user_id, Model model, DeptDto dept_dto, HobbyDto hob_dto, UserDto dto) {
+		model.addAttribute("schKey", dto.getSchKey());
+		
 		UserDto viewdto = user_service.getView(user_id);
 		model.addAttribute("view", viewdto);
 
@@ -63,29 +64,18 @@ public class AdminController {
 
 		List<LnkgDto> lnkgList = lnkg_service.getList(user_id);
 		StringBuffer user_hobby = new StringBuffer();
+
 		for (int i = 0; i < lnkgList.size(); i++) {
 			user_hobby.append(lnkgList.get(i).getLnkg_hobby_id());
-			if (i < lnkgList.size() - 1) {
-				user_hobby.append(",");
-			}
 		}
 		model.addAttribute("viewHob", user_hobby);
-
-		List<UserDto> resultList = user_service.getList(dto);
+		
+		List<UserDto> resultList = user_service.getList(dto);			
 		model.addAttribute("result", resultList);
 
-		return "admin_view";
+		return "admin";
 	}
 
-//	@RequestMapping("/admin/{schKey}")
-//	public String findByNm(@PathVariable String schKey, UserDto udto, Model model) {
-//		System.out.println(schKey);
-//		udto.setSchKey(schKey);
-//		List<UserDto> findList = user_service.findByNm(udto);
-//		model.addAttribute("result", findList);
-//		return "admin";
-//	}
-	
 	
 	@RequestMapping("/admin/delete/{user_id}")
 	public String delete(@PathVariable String user_id) {
@@ -95,6 +85,7 @@ public class AdminController {
 
 	@RequestMapping("/admin/update/{user_id}")
 	public String update(@PathVariable String user_id, UserDto uDto, LnkgDto lDto, Model model) {
+		
 		user_service.update(uDto);
 		lnkg_service.reset(lDto);
 		
@@ -112,6 +103,6 @@ public class AdminController {
 		}
 
 		
-		return "redirect:/admin/view/{user_id}";
+		return "redirect:/admin/{user_id}";
 	}
 }

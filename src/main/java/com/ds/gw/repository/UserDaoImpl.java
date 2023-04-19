@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<UserDto> findByNm(UserDto userdto) {
-		return sm.selectList("User_findByNm", userdto);
+	public int findByID(UserDto userdto) {
+		return sm.selectOne("User_findById", userdto);
 	}
 }

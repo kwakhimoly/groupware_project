@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- [템플릿 설명] - 해당 파일은 SQL 문을 작성하는 곳입니다. -->
 <mapper namespace="User">
 
 	<select id="User_getList" parameterType="UserDto" resultType="UserDto">
@@ -71,4 +70,10 @@
 		DELETE FROM public."user"
 		WHERE user_id = #{user_id}
 	</delete>
+	
+	<select id="User_findById" parameterType="UserDto" resultType="Integer">
+		SELECT count(*)
+		FROM public."user"
+		WHERE user_id=#{user_id}
+	</select>
 </mapper>

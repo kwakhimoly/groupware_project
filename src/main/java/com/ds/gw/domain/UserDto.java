@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserDto extends BaseDto {
-	String user_id;
-	String user_nm;
-	int user_dept_se_no;
-	String user_eml_addr;
-	String user_telno;
-	String user_addr;
-	String user_aprv_yn;
+	String user_id="";
+	String user_nm="";
+	int user_dept_se_no=0;
+	String user_eml_addr="";
+	String user_telno="";
+	String user_addr="";
+	String user_aprv_yn="";
 }

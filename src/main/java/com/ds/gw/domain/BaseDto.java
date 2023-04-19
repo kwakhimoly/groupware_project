@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BaseDto {
-String user_dept;
-String user_hobby;
+String user_dept="";
 String schKey="";
 }

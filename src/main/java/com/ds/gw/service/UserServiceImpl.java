@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDto> findByNm(UserDto userdto) {
-		return dao.findByNm(userdto);
+	public int findByID(UserDto userdto) {
+		return dao.findByID(userdto);
 	}
 
 }

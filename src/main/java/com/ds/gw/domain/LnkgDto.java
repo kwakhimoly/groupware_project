@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class LnkgDto {
-private String user_id;
-private String lnkg_hobby_id;
+private String user_id="";
+private String lnkg_hobby_id="";
 }
