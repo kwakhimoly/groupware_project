@@ -51,6 +51,11 @@ public class UserController {
 	
 	@PostMapping("/user/save")
 	public String postSave(UserDto dto, LnkgDto l_dto) {
+		
+		if(dto.getIdcheck_yn().equals("N")) {
+			return "redirect:/user";
+		}
+		
 		user_service.insert(dto);
 		
 		if(l_dto.getLnkg_hobby_id().equals("")) {
@@ -69,7 +74,7 @@ public class UserController {
 			lnkg_service.insert(l_dto);
 		}
 		
-		return "redirect:/";
+		return "redirect:/user";
 	}
 	
 	@ResponseBody

@@ -8,4 +8,5 @@ import lombok.Setter;
 public class BaseDto {
 String user_dept="";
 String schKey="";
+String idcheck_yn="";
 }

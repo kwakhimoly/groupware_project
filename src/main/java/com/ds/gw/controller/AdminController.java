@@ -1,7 +1,5 @@
 package com.ds.gw.controller;
 
-
-
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -38,6 +36,7 @@ public class AdminController {
 	public String getList(DeptDto dept_dto, HobbyDto hob_dto, UserDto dto, Model model) {
 		List<UserDto> resultList = user_service.getList(dto);
 		model.addAttribute("result", resultList);
+		
 		List<DeptDto> deptList = dept_service.getList(dept_dto);
 		model.addAttribute("deptList", deptList);
 		
@@ -52,15 +51,19 @@ public class AdminController {
 	@RequestMapping("/admin/{user_id}")
 	public String getView(@PathVariable String user_id, Model model, DeptDto dept_dto, HobbyDto hob_dto, UserDto dto) {
 		model.addAttribute("schKey", dto.getSchKey());
+	
+		List<UserDto> resultList = user_service.getList(dto);		
+		model.addAttribute("result", resultList);
+
+		List<DeptDto> deptList = dept_service.getList(dept_dto);
+		model.addAttribute("deptList", deptList);
+		
+		List<HobbyDto> hobList = hob_service.getList(hob_dto);
+		model.addAttribute("hobList", hobList);
 		
 		UserDto viewdto = user_service.getView(user_id);
 		model.addAttribute("view", viewdto);
 
-		List<DeptDto> deptList = dept_service.getList(dept_dto);
-		model.addAttribute("deptList", deptList);
-
-		List<HobbyDto> hobList = hob_service.getList(hob_dto);
-		model.addAttribute("hobList", hobList);
 
 		List<LnkgDto> lnkgList = lnkg_service.getList(user_id);
 		StringBuffer user_hobby = new StringBuffer();
@@ -69,9 +72,6 @@ public class AdminController {
 			user_hobby.append(lnkgList.get(i).getLnkg_hobby_id());
 		}
 		model.addAttribute("viewHob", user_hobby);
-		
-		List<UserDto> resultList = user_service.getList(dto);			
-		model.addAttribute("result", resultList);
 
 		return "admin";
 	}
@@ -85,13 +85,15 @@ public class AdminController {
 
 	@RequestMapping("/admin/update/{user_id}")
 	public String update(@PathVariable String user_id, UserDto uDto, LnkgDto lDto, Model model) {
-		
 		user_service.update(uDto);
 		lnkg_service.reset(lDto);
 		
-		if (lDto.getLnkg_hobby_id() == null) {
+		if(lDto.getLnkg_hobby_id().equals("")) {
+			lDto.setLnkg_hobby_id("Z00");
+		} else if(lDto.getLnkg_hobby_id().contains("Z00")) {
 			lDto.setLnkg_hobby_id("Z00");
 		}
+		
 		if (lDto.getLnkg_hobby_id().contains(",")) {
 			String[] hobby_list = lDto.getLnkg_hobby_id().split(",");
 			for (int i = 0; i < hobby_list.length; i++) {
@@ -102,7 +104,6 @@ public class AdminController {
 			lnkg_service.insert(lDto);
 		}
 
-		
 		return "redirect:/admin/{user_id}";
 	}
 }

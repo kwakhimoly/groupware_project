@@ -23,13 +23,36 @@ $(()=>{
 				alert("사용 가능한 아이디입니다.");
 				$("#user_id_checked").prop("readOnly", true);
 				$("#user_id").attr('value', user_id_fin);
+				$("#idcheck_yn").attr('value', 'Y');
+				$("#user_nm").focus();
 			} else{
 				alert("이미 사용 중인 아이디입니다.");
+				$("#user_id_checked").focus();
 			}
 		})
 		.fail((res, error, status)=>{
 			console.log(error)
 		})
+	})
+	
+	$("#btnSave").click(()=>{
+		let idcheck_yn = $("#idcheck_yn").val();
+		let user_id = $("#user_id").val();
+		let user_nm = $("#user_nm").val();
+		let user_eml_addr = $("#user_eml_addr").val();
+		let user_telno = $("#user_telno").val();
+		let user_addr = $("#user_addr").val();
+		
+		
+		if(idcheck_yn=='N'){
+			alert("아이디 중복 체크 필수")			
+		} else {
+			if(user_id==""||user_nm==""||user_eml_addr==""||user_telno==""||user_addr==""){
+				alert("정보를 모두 입력해주세요.")
+			} else{
+				alert("등록 신청 완료")
+			}
+		}
 	})
 })
 </script>
@@ -47,7 +70,7 @@ $(()=>{
   </div>
 </nav>
 <div class="container mt-3">
-<form name="myformcheck" id="myformcheck" method="post" th:action="@{/user/idcheck}">
+<form name="myformcheck" id="myformcheck" method="post">
   <h3>회원가입</h3>
   <p></p>
    <table class="table">
@@ -68,6 +91,7 @@ $(()=>{
 </form>
 <form name="myform" id="myform" method="post" th:action="@{/user/save}">
 <input type="hidden" class="form-control" id="user_id" name="user_id">
+<input type="hidden" class="form-control" id="idcheck_yn" name="idcheck_yn" value="N">
    <table class="table">
    	<colgroup>
    		<col width="30%">
@@ -76,12 +100,12 @@ $(()=>{
     <tbody>
       <tr><th>사원명</th><td>
         	 <div class="input-group">
-			    <input type="text" class="form-control" placeholder="이름을 입력하세요" name="user_nm" required="required">
+			    <input type="text" class="form-control" placeholder="이름을 입력하세요" id="user_nm" name="user_nm" required="required">
 			 </div>
       </td></tr>
       <tr><th>이메일</th><td>
         	 <div class="input-group">
-			    <input type="email" class="form-control" placeholder="이메일을 입력하세요" name="user_eml_addr" required="required">
+			    <input type="email" class="form-control" placeholder="이메일을 입력하세요" id="user_eml_addr" name="user_eml_addr" required="required">
 			 </div>
       </td></tr>
       <tr><th>부서</th><td>
@@ -93,12 +117,12 @@ $(()=>{
       </td></tr>
       <tr><th>전화번호</th><td>
         	 <div class="input-group">
-			    <input type="tel" class="form-control" placeholder="전화번호를 입력하세요" name="user_telno" required="required">
+			    <input type="tel" class="form-control" placeholder="전화번호를 입력하세요" id="user_telno" name="user_telno" required="required">
 			 </div>
       </td></tr>
       <tr><th>주소</th><td>
         	 <div class="input-group">
-			    <input type="text" class="form-control" placeholder="주소를 입력하세요" name="user_addr" required="required">
+			    <input type="text" class="form-control" placeholder="주소를 입력하세요" id="user_addr" name="user_addr" required="required">
 			 </div>
       </td></tr>
       <tr><th>취미</th><td>
