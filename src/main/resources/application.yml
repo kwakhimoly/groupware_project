@@ -9,7 +9,7 @@
 spring:
  datasource:
    driver-class-name: org.postgresql.Driver
-   url: jdbc:postgresql://34.22.83.108:5432/groupware
+   url: jdbc:postgresql://localhost:5432/groupware
    username: kwak
    password: 1234
  thymeleaf:
