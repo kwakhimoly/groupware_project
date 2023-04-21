@@ -12,7 +12,7 @@
         	   dept_nm,
         	   dept_up_cd_id
         FROM public.dept
-        ORDER BY dept_up_cd_id
+        ORDER BY dept_se_no
     </select>
 
 
