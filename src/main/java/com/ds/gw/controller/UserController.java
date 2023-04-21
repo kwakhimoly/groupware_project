@@ -81,10 +81,10 @@ public class UserController {
 	@RequestMapping("/user/idcheck")
 	public HashMap<String, Object> idcheck(UserDto dto){
 		HashMap<String, Object> map = new HashMap<>();
-		if(dto.getIdcheck_yn().equals("")||dto.getIdcheck_yn()=="") {
-			map.put("result", 999999);
-			return map;
-		}
+//		if(dto.getIdcheck_yn().equals("")||dto.getIdcheck_yn()=="") {
+//			map.put("result", 999999);
+//			return map;
+//		}
 		map.put("result", user_service.findByID(dto));
 		return map;
 	}
