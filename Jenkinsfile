@@ -26,8 +26,8 @@ node {
     //docker.withRegistry에 dockerhub는 앞서 설정한 dockerhub credentials의 ID이다.
     stage('Push image') {
         docker.withRegistry("http://harbor.pa.ds/test", "Harbor") {
-            app.push("what")
-            app.push("latest-01") // 태그를 부여한다. latest-01, 22
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest") // 태그를 부여한다. latest-01, 22
         }
     }
 
