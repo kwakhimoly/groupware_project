@@ -22,6 +22,7 @@ spring:
       filter:
         enabled: true
 server:
+  port: 23432
   servlet:
     encoding:
       force: true
