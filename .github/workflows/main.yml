@@ -19,7 +19,6 @@ jobs:
       - name: tmc-setup
         run: |
           ip addr
-          ip link set mtu 1450 dev eth0
           curl -vk https://172.16.15.2:6443
           #./tmc_setup.sh
         env:
