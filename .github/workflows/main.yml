@@ -14,8 +14,8 @@ jobs:
       image: jrecord/nettools
     timeout-minutes: 10
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
+      #- name: Check out repository code
+      #  uses: actions/checkout@v3
       - name: tmc-setup
         run: |
           ip addr
