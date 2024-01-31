@@ -25,4 +25,4 @@ jobs:
           kubeconfig_cni_ps_dev_skip_tls: ${{ secrets.kubeconfig_cni_ps_dev_skip_tls }}
           kubeconfig_cni2_dev: ${{ secrets.kubeconfig_cni2_dev }}
           TMC_SELF_MANAGED_USERNAME: ${{ secrets.TMC_SELF_MANAGED_USERNAME }}
-           TMC_SELF_MANAGED_PASSWORD: ${{ secrets.TMC_SELF_MANAGED_PASSWORD }}
+          TMC_SELF_MANAGED_PASSWORD: ${{ secrets.TMC_SELF_MANAGED_PASSWORD }}
