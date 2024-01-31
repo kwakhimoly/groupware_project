@@ -1,0 +1,28 @@
+name: tmc-setup-self-runner 
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+
+on: workflow_dispatch 
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+jobs:
+  self-runner-test:
+    runs-on: self-hosted
+    container:
+      image: jrecord/nettools
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: tmc-setup
+        run: |
+          ./tmc_setup.sh
+        env:
+          ca_crt: ${{ secrets.ca_crt }}
+          kubeconfig_cni_ps_dev: ${{ secrets.kubeconfig_cni_ps_dev }}
+          kubeconfig_cni_ps_dev_skip_tls: ${{ secrets.kubeconfig_cni_ps_dev_skip_tls }}
+          kubeconfig_cni2_dev: ${{ secrets.kubeconfig_cni2_dev }}
+          TMC_SELF_MANAGED_USERNAME: ${{ secrets.TMC_SELF_MANAGED_USERNAME }}
+           TMC_SELF_MANAGED_PASSWORD: ${{ secrets.TMC_SELF_MANAGED_PASSWORD }}
